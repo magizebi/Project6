@@ -16,7 +16,6 @@ AHelicopter::AHelicopter()
 	bClockwise = true;
 	DropInterval = 3;
 	FallingBall = ABall::StaticClass();
-	CenterLocation = FVector(0, 0, 0);
 }
 
 void AHelicopter::Turn(float value)
@@ -48,18 +47,10 @@ void AHelicopter::DropBall()
 	}
 }
 
-void AHelicopter::CalcCenterLocation()
-{
-	FVector RightVector = GetActorRightVector();
-	CenterLocation = GetActorLocation() + RightVector * FlyingRadius * (bClockwise ? 1.0f : -1.0f);
-}
-
 void AHelicopter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	CalcCenterLocation();
-	// 타이머 설정
 	GetWorldTimerManager().SetTimer(DropTimerHandle, this, &AHelicopter::DropBall, DropInterval, true);
 }
 

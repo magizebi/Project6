@@ -28,13 +28,11 @@ protected:
 
 	TSubclassOf<AActor> FallingBall;
 	FTimerHandle DropTimerHandle;
-	FVector CenterLocation;  // 원 운동의 중심 위치를 저장
 
 private:
 	void Turn(float value);
 	void Move(float value);
 	void DropBall();
-	void CalcCenterLocation();
 
 protected:
 	virtual void BeginPlay() override;
